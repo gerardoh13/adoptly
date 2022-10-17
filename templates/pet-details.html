@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %} Add Pet {% endblock %} {% block
+content %}
+<div class="container text-center">
+  <h1>{{ pet.name }}</h1>
+  {% if pet.photo_url %}
+  <img class="detailImg" src="{{ pet.photo_url }}" alt="pet pic" />
+  {% else %}
+  <img
+    class="detailImg"
+    src="https://i.pinimg.com/474x/b9/68/3d/b9683d3fe3f25bca278364f64f215c2a.jpg"
+    alt="default pet pic"
+  />
+  {% endif %}
+  <p>
+    {{ pet.name }} is a {% if pet.age %} {{ pet.age }} year old {% else %} sweet
+    {% endif %} {{ pet.species }} {% if pet.available %} who is ready for a
+    furEver home! {% else %} who found their furEver home! {% endif %}
+  </p>
+  <p>{% if pet.notes %}</p>
+
+  <p>{{ pet.notes }}</p>
+  {% endif %}
+</div>
+<br />
+<form action="/{{ pet.id }}" method="POST">
+  {% include "form.html" %}
+  <button class="btn btn-primary">Edit</button>
+</form>
+{% endblock %}

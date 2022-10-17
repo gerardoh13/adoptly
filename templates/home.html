@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block title %} Home {% endblock %} {% block content
+%}
+<h1 class="display-1">Pets</h1>
+<br />
+{% if pets %}
+<div class="row justify-content-center container">
+  {% for pet in pets %}
+  <div class="col-lg-3 col-md-6 text-center">
+    <a href="/{{pet.id}}">
+      {% if pet.photo_url %}
+      <img class="img-thumbnail" src="{{ pet.photo_url }}" alt="pet image" />
+      {% else %}
+      <img
+        class="img-thumbnail"
+        src="https://i.pinimg.com/474x/b9/68/3d/b9683d3fe3f25bca278364f64f215c2a.jpg"
+        alt="default pic"
+      />
+      {% endif %}
+    </a>
+    <p>
+      {{ pet.name }} {% if pet.available %}
+      <span>
+        <b> is available!</b>
+      </span>
+      {% endif %}
+    </p>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<h4>No pets available!</h4>
+{% endif %} {% endblock %}
